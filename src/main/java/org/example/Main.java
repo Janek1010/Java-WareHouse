@@ -6,6 +6,7 @@ import org.example.entities.OrderDto;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.ForkJoinPool;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -78,6 +79,8 @@ public class Main {
         readDTO.forEach(System.out::println);
 
         // 7
+
+        ForkJoinPool customThreadPool = new ForkJoinPool(3);
 
     }
 }
