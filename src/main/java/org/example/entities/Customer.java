@@ -13,6 +13,7 @@ public class Customer implements Comparable<Customer>{
     private int age;
 
     @Builder.Default
+    @EqualsAndHashCode.Exclude
     private List<Order> orders = new ArrayList<>();
 
     public void addOrder(Order order){

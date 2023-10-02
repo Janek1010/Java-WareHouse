@@ -10,19 +10,12 @@ import java.util.UUID;
 public class Order implements Comparable<Order>{
     private String productName;
     private Integer quantity;
+    @ToString.Exclude
     private Customer customer;
     @Override
     public int compareTo(Order otherOrder) {
         return Comparator.comparing(Order::getProductName)
                 .thenComparing(Order::getQuantity)
                 .compare(this,otherOrder);
-    }
-    @Override
-    public String toString() {
-        return "Order{" +
-                "productName='" + productName + '\'' +
-                ", quantity=" + quantity +
-                ", customer='" + customer.getName() + '\'' +
-                '}';
     }
 }

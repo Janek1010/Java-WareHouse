@@ -2,6 +2,7 @@ package org.example;
 
 import org.example.entities.Customer;
 import org.example.entities.Order;
+import org.example.entities.OrderDto;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -29,17 +30,23 @@ public class Main {
         //customers.forEach(System.out::println);
 
         // 3
-        List<Order> orders = customers.stream()
+        Set<Order> orders = customers.stream()
                 .map(Customer::getOrders) // Otrzymujemy List<List<Order>>
                 .flatMap(Collection::stream) // Spłaszczamy Listy Orderów do pojedynczego strumienia
-                .toList();
+                .collect(Collectors.toSet());
 
         //orders.forEach(System.out::println);
 
         // 4
-        orders.stream().filter(el ->el.getQuantity() >= 80).filter(el ->el.getQuantity() < 250).sorted().forEach(System.out::println);
+        orders = orders.stream().filter(el ->el.getQuantity() >= 80).filter(el ->el.getQuantity() < 250).sorted().collect(Collectors.toSet());
+        //orders.forEach(System.out::println);
 
         // 5
+        List<OrderDto> dtos = orders.stream().map(el -> OrderDto.builder().customer(el.getCustomer().getName()).productName(el.getProductName()).quantity(el.getQuantity()).build()).toList();
+        dtos.forEach(System.out::println);
+
+        // 6
+
 
     }
 }
