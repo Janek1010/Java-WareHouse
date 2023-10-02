@@ -22,7 +22,7 @@ public class Main {
 
         for (Customer c: customers) {
             for (int i = 0; i < rand.nextInt(5) + 3; i++) {
-                c.addOrder(Order.builder().customer(c).productName("Piwo IPA").quantity(rand.nextInt(500) + 10).build());
+                c.addOrder(Order.builder().customer(c).productName(products.get(rand.nextInt(5))).quantity(rand.nextInt(500) + 10).build());
             }
         }
         // 2
@@ -34,6 +34,12 @@ public class Main {
                 .flatMap(Collection::stream) // Spłaszczamy Listy Orderów do pojedynczego strumienia
                 .toList();
 
-        orders.forEach(System.out::println);
+        //orders.forEach(System.out::println);
+
+        // 4
+        orders.stream().filter(el ->el.getQuantity() >= 80).filter(el ->el.getQuantity() < 250).sorted().forEach(System.out::println);
+
+        // 5
+
     }
 }
